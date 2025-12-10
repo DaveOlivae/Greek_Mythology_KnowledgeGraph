@@ -8,6 +8,12 @@ class GrafoMitologia:
 
         # lista de adjacencia para todos os nos
         self.adjacency = {}
+
+        # lista das relacoes bidirecionais (pra que a volta seja adicionada automaticamente)
+        self.relacoes_bidirecionais = {
+            "CASADOS",
+            "AMANTES"
+        }
     
 
     def add_node(self, id, type, props=None):
@@ -32,10 +38,40 @@ class GrafoMitologia:
 
     def add_edge(self, origin, destiny, relation):
         if origin in self.nodes and destiny in self.nodes:
+            # adiciona a relacao
             self.adjacency[origin][destiny] = relation
+
+            if relation in self.relacoes_bidirecionais:
+                self.adjacency[destiny][origin] = relation
+
             return True
         return False
-    
+
+    def remove_edge(self, origin, destiny):
+        """
+        Remove a conexão entre dois nós.
+        Se a relação for bidirecional (ex: CASADO_COM), remove a volta também.
+        """
+        # verifica se a conexao existe
+        if origin in self.adjacency and destiny in self.adjacency[origin]:
+            
+            # Guarda o nome da relação antes de deletar (usado pra remover bidirecional)
+            relation = self.adjacency[origin][destiny]
+            
+            # remove a relação de IDA
+            del self.adjacency[origin][destiny]
+            
+            # verifica se precisa remover a VOLTA 
+            
+            if relation in self.relacoes_bidirecionais:
+                # checa se o destino tambem aponta de volta com a mesma relation
+                if destiny in self.adjacency and origin in self.adjacency[destiny]:
+                    if self.adjacency[destiny][origin] == relation:
+                        del self.adjacency[destiny][origin]
+            
+            return True
+        
+        return False 
 
     def remover_no(self, id_no):
         if id_no in self.nodes:

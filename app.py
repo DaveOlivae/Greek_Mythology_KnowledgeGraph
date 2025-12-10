@@ -26,7 +26,7 @@ grafo = get_grafo()
 
 # --- SIDEBAR: ADICIONAR ---
 st.sidebar.header("🛠️ Controles")
-menu = st.sidebar.radio("Ação", ["Adicionar Entidade", "Adicionar Relação", "Remover Entidade", "Buscar Caminho"])
+menu = st.sidebar.radio("Ação", ["Adicionar Entidade", "Remover Entidade", "Adicionar Relação", "Remover Relação", "Buscar Caminho"])
 
 if menu == "Adicionar Entidade":
     with st.sidebar.form("add_node"):
@@ -53,6 +53,43 @@ elif menu == "Adicionar Relação":
             grafo.save_as_json(ARQUIVO_DADOS)
             st.success("Conectado!")
             st.rerun()
+
+elif menu == "Remover Relação":
+    st.sidebar.subheader("Desfazer Conexão")
+    
+    lista_nos = list(grafo.nodes.keys())
+    
+    # 1. Escolha a Origem
+    origem = st.sidebar.selectbox("Origem (Quem?)", lista_nos)
+    
+    # 2. Lógica para filtrar o Destino
+    # Pegamos apenas os vizinhos do nó de Origem para preencher o segundo selectbox
+    vizinhos = grafo.get_neighbours(origem) # Retorna dict: {'Hera': 'CASADO_COM', ...}
+    lista_vizinhos = list(vizinhos.keys())
+    
+    if not lista_vizinhos:
+        st.sidebar.warning(f"{origem} não tem relações para remover.")
+    else:
+        destino = st.sidebar.selectbox("Destino (Com quem?)", lista_vizinhos)
+        
+        # Mostra qual é a relação atual para o usuário ter certeza
+        tipo_relacao = vizinhos[destino]
+        st.sidebar.info(f"Relação atual: **{tipo_relacao}**")
+        
+        # Botão de ação
+        if st.sidebar.button("Cortar Relação"):
+            if grafo.remove_edge(origem, destino):
+                grafo.save_as_json(ARQUIVO_DADOS)
+                
+                # Mensagem personalizada dependendo se era casamento ou não
+                if "CASADOS" in tipo_relacao:
+                    st.sidebar.success("Divórcio concluído! 📜")
+                else:
+                    st.sidebar.success("Relação removida!")
+                    
+                st.rerun()
+            else:
+                st.sidebar.error("Erro ao remover.")
 
 elif menu == "Buscar Caminho":
     st.sidebar.subheader("Algoritmo BFS")
@@ -113,13 +150,41 @@ def desenhar_grafo(meu_grafo_puro):
                           )
     
     # 2. Copia Arestas
+    # conjunto pra guardar as arestas ja vistas
+    arestas_processadas = set()
+
     for origem, vizinhos in meu_grafo_puro.adjacency.items():
         for destino, relacao in vizinhos.items():
-            G_visual.add_edge(origem, 
-                              destino, 
-                              label=relacao,
-                              font={'face': 'JetBrainsMono Nerd Font', 'align': 'middle', 'size': 20}
-                              )
+
+            # uma conexao eh a mesma independente da ordem origem-destino
+            # isso eh util para desenhar uma relacao bidirecional
+            chave_conexao = frozenset([origem, destino])
+
+            if chave_conexao in arestas_processadas:
+                continue
+
+            tem_volta = False
+            vizinhos_destino = meu_grafo_puro.adjacency.get(destino, {})
+
+            if origem in vizinhos_destino and vizinhos_destino[origem] == relacao:
+                tem_volta = True
+
+            # desenha uma seta com duas pontas para uma relacao bidirecional 
+            if tem_volta:
+                G_visual.add_edge(
+                    origem, destino, 
+                    label=relacao, 
+                    arrows="to;from", 
+                    font={'face': 'JetBrainsMono Nerd Font', 'align': 'middle', 'size': 20}
+                )
+                arestas_processadas.add(chave_conexao)
+            else:
+                G_visual.add_edge(
+                    origem, 
+                    destino, 
+                    label=relacao,
+                    font={'face': 'JetBrainsMono Nerd Font', 'align': 'middle', 'size': 20}
+                )
 
     # 3. Gera PyVis
     net = Network(height="600px", width="100%", bgcolor="#ffffff", font_color="black", directed=True)

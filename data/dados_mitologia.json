@@ -159,9 +159,19 @@
             "relation": "PAI_DE"
         },
         {
+            "origin": "Zeus",
+            "destiny": "Semele",
+            "relation": "AMANTES"
+        },
+        {
+            "origin": "Zeus",
+            "destiny": "Hera",
+            "relation": "CASADOS"
+        },
+        {
             "origin": "Hera",
             "destiny": "Zeus",
-            "relation": "CASADA_COM"
+            "relation": "CASADOS"
         },
         {
             "origin": "Ares",
@@ -197,6 +207,11 @@
             "origin": "Peleu",
             "destiny": "Aquiles",
             "relation": "PAI_DE"
+        },
+        {
+            "origin": "Aquiles",
+            "destiny": "Patrocles",
+            "relation": "AMANTES"
         },
         {
             "origin": "Patrocles",
