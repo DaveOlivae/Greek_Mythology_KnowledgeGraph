@@ -1,0 +1,252 @@
+{
+    "entities": [
+        {
+            "id": "Zeus",
+            "type": "Deus",
+            "props": {
+                "poder": "Raio"
+            }
+        },
+        {
+            "id": "Hera",
+            "type": "Deusa",
+            "props": {
+                "dominio": "Casamento"
+            }
+        },
+        {
+            "id": "Hercules",
+            "type": "Heroi",
+            "props": {
+                "feito": "12 Trabalhos"
+            }
+        },
+        {
+            "id": "Ares",
+            "type": "Deus",
+            "props": {
+                "dominio": "Guerra"
+            }
+        },
+        {
+            "id": "Dionisio",
+            "type": "Deus",
+            "props": {
+                "dominio": "Festas e \u00caxtase"
+            }
+        },
+        {
+            "id": "Semele",
+            "type": "Humana",
+            "props": {
+                "titulo": "Princesa de Tebas"
+            }
+        },
+        {
+            "id": "Harmonia",
+            "type": "Deusa",
+            "props": {
+                "dominio": "Harmonia e Concordia"
+            }
+        },
+        {
+            "id": "Cadmo",
+            "type": "Humano",
+            "props": {
+                "feito": "Fundador de Tebas"
+            }
+        },
+        {
+            "id": "\u00c9aco",
+            "type": "Humano",
+            "props": {}
+        },
+        {
+            "id": "Peleu",
+            "type": "Heroi",
+            "props": {}
+        },
+        {
+            "id": "Aquiles",
+            "type": "Heroi",
+            "props": {}
+        },
+        {
+            "id": "Patrocles",
+            "type": "Heroi",
+            "props": {}
+        },
+        {
+            "id": "Dardanos",
+            "type": "Humano",
+            "props": {}
+        },
+        {
+            "id": "Tr\u00f3s",
+            "type": "Humano",
+            "props": {}
+        },
+        {
+            "id": "Ilo",
+            "type": "Humano",
+            "props": {}
+        },
+        {
+            "id": "Ganimedes",
+            "type": "Humano",
+            "props": {}
+        },
+        {
+            "id": "C\u00e1pis",
+            "type": "Humano",
+            "props": {}
+        },
+        {
+            "id": "Anquises",
+            "type": "Humano",
+            "props": {}
+        },
+        {
+            "id": "Eneias",
+            "type": "Heroi",
+            "props": {}
+        },
+        {
+            "id": "Erict\u00f4nio",
+            "type": "Humano",
+            "props": {}
+        },
+        {
+            "id": "Assar\u00e1co",
+            "type": "Humano",
+            "props": {}
+        },
+        {
+            "id": "Afrodite",
+            "type": "Deusa",
+            "props": {}
+        }
+    ],
+    "relations": [
+        {
+            "origin": "Zeus",
+            "destiny": "Ares",
+            "relation": "PAI_DE"
+        },
+        {
+            "origin": "Zeus",
+            "destiny": "Hercules",
+            "relation": "PAI_DE"
+        },
+        {
+            "origin": "Zeus",
+            "destiny": "Dionisio",
+            "relation": "PAI_DE"
+        },
+        {
+            "origin": "Zeus",
+            "destiny": "\u00c9aco",
+            "relation": "PAI_DE"
+        },
+        {
+            "origin": "Zeus",
+            "destiny": "Dardanos",
+            "relation": "PAI_DE"
+        },
+        {
+            "origin": "Zeus",
+            "destiny": "Afrodite",
+            "relation": "PAI_DE"
+        },
+        {
+            "origin": "Hera",
+            "destiny": "Zeus",
+            "relation": "CASADA_COM"
+        },
+        {
+            "origin": "Ares",
+            "destiny": "Harmonia",
+            "relation": "PAI_DE"
+        },
+        {
+            "origin": "Semele",
+            "destiny": "Dionisio",
+            "relation": "MAE_DE"
+        },
+        {
+            "origin": "Semele",
+            "destiny": "Zeus",
+            "relation": "AMANTES"
+        },
+        {
+            "origin": "Harmonia",
+            "destiny": "Semele",
+            "relation": "MAE_DE"
+        },
+        {
+            "origin": "Cadmo",
+            "destiny": "Semele",
+            "relation": "PAI_DE"
+        },
+        {
+            "origin": "\u00c9aco",
+            "destiny": "Peleu",
+            "relation": "PAI_DE"
+        },
+        {
+            "origin": "Peleu",
+            "destiny": "Aquiles",
+            "relation": "PAI_DE"
+        },
+        {
+            "origin": "Patrocles",
+            "destiny": "Aquiles",
+            "relation": "AMANTES"
+        },
+        {
+            "origin": "Dardanos",
+            "destiny": "Erict\u00f4nio",
+            "relation": "PAI_DE"
+        },
+        {
+            "origin": "Tr\u00f3s",
+            "destiny": "Ilo",
+            "relation": "PAI_DE"
+        },
+        {
+            "origin": "Tr\u00f3s",
+            "destiny": "Ganimedes",
+            "relation": "PAI_DE"
+        },
+        {
+            "origin": "Tr\u00f3s",
+            "destiny": "Assar\u00e1co",
+            "relation": "PAI_DE"
+        },
+        {
+            "origin": "C\u00e1pis",
+            "destiny": "Anquises",
+            "relation": "PAI_DE"
+        },
+        {
+            "origin": "Anquises",
+            "destiny": "Eneias",
+            "relation": "PAI_DE"
+        },
+        {
+            "origin": "Erict\u00f4nio",
+            "destiny": "Tr\u00f3s",
+            "relation": "PAI_DE"
+        },
+        {
+            "origin": "Assar\u00e1co",
+            "destiny": "C\u00e1pis",
+            "relation": "PAI_DE"
+        },
+        {
+            "origin": "Afrodite",
+            "destiny": "Eneias",
+            "relation": "MAE_DE"
+        }
+    ]
+}

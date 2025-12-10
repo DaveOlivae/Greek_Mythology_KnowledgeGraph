@@ -1,0 +1,19 @@
+# virtual environments
+venv/
+.env
+env/
+
+# python temp trash
+__pycache__/
+*.pyc
+
+# streamlit temp files
+.streamlit/
+
+# keep the temp folder but ignore temp files
+temp/*
+!temp/.gitkeep
+
+# ignore python cache in src
+__pycache__/
+src/__pycache__/
