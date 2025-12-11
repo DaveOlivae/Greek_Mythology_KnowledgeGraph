@@ -7,14 +7,28 @@ Além disso, a visualização e interação com o grafo é feita por meio da bib
 ## Instalação
 
 1. Clone este repositório:
-   ```bash
-   git clone https://github.com/DaveOlivae/Greek_Mythology_KnowledgeGraph.git
-   ```
+```bash
+git clone https://github.com/DaveOlivae/Greek_Mythology_KnowledgeGraph.git
+```
 
 2. Crie um ambiente virtual e ative:
 ```bash
-   git clone https://github.com/DaveOlivae/Greek_Mythology_KnowledgeGraph.git
-   ```
+# no linux
+python -m venv mitologia
+
+# ativar
+source mitologia/bin/activate
+```
+3. Instala as Dependências:
+```bash
+pip install -r requirements.txt
+```
+
+4. Execute o Projeto
+```bash
+streamlit run app.py
+```
+
 ## Base de Dados
 
 O Grafo de Conhecimento foi feito com base nos personagens e relações da mitologia greco-romana.
