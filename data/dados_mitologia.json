@@ -4,127 +4,309 @@
             "id": "Zeus",
             "type": "Deus",
             "props": {
-                "poder": "Raio"
+                "local": "Olimpo"
             }
         },
         {
             "id": "Hera",
             "type": "Deusa",
             "props": {
-                "dominio": "Casamento"
+                "local": "Olimpo"
             }
         },
         {
             "id": "Hercules",
             "type": "Heroi",
             "props": {
-                "feito": "12 Trabalhos"
+                "local": "Tebas"
             }
         },
         {
             "id": "Ares",
             "type": "Deus",
             "props": {
-                "dominio": "Guerra"
+                "local": "Olimpo"
             }
         },
         {
             "id": "Dionisio",
             "type": "Deus",
             "props": {
-                "dominio": "Festas e \u00caxtase"
+                "local": "Olimpo"
             }
         },
         {
             "id": "Semele",
             "type": "Humana",
             "props": {
-                "titulo": "Princesa de Tebas"
+                "local": "Tebas"
             }
         },
         {
             "id": "Harmonia",
             "type": "Deusa",
             "props": {
-                "dominio": "Harmonia e Concordia"
+                "local": "Olimpo"
             }
         },
         {
             "id": "Cadmo",
             "type": "Humano",
             "props": {
-                "feito": "Fundador de Tebas"
+                "local": "Tebas"
             }
         },
         {
             "id": "\u00c9aco",
             "type": "Humano",
-            "props": {}
+            "props": {
+                "local": "F\u00edtia"
+            }
         },
         {
             "id": "Peleu",
             "type": "Heroi",
-            "props": {}
+            "props": {
+                "local": "F\u00edtia"
+            }
         },
         {
             "id": "Aquiles",
             "type": "Heroi",
-            "props": {}
+            "props": {
+                "local": "F\u00edtia"
+            }
         },
         {
             "id": "Patrocles",
             "type": "Heroi",
-            "props": {}
+            "props": {
+                "local": "F\u00edtia"
+            }
         },
         {
             "id": "Dardanos",
             "type": "Humano",
-            "props": {}
+            "props": {
+                "local": "Troia"
+            }
         },
         {
             "id": "Tr\u00f3s",
             "type": "Humano",
-            "props": {}
+            "props": {
+                "local": "Troia"
+            }
         },
         {
             "id": "Ilo",
             "type": "Humano",
-            "props": {}
+            "props": {
+                "local": "Troia"
+            }
         },
         {
             "id": "Ganimedes",
             "type": "Humano",
-            "props": {}
+            "props": {
+                "local": "Troia"
+            }
         },
         {
             "id": "C\u00e1pis",
             "type": "Humano",
-            "props": {}
+            "props": {
+                "local": "Troia"
+            }
         },
         {
             "id": "Anquises",
             "type": "Humano",
-            "props": {}
+            "props": {
+                "local": "Troia"
+            }
         },
         {
             "id": "Eneias",
             "type": "Heroi",
-            "props": {}
+            "props": {
+                "local": "Troia"
+            }
         },
         {
             "id": "Erict\u00f4nio",
             "type": "Humano",
-            "props": {}
+            "props": {
+                "local": "Troia"
+            }
         },
         {
             "id": "Assar\u00e1co",
             "type": "Humano",
-            "props": {}
+            "props": {
+                "local": "Troia"
+            }
         },
         {
             "id": "Afrodite",
             "type": "Deusa",
-            "props": {}
+            "props": {
+                "local": "Olimpo"
+            }
+        },
+        {
+            "id": "Hefesto",
+            "type": "Deus",
+            "props": {
+                "local": "Olimpo"
+            }
+        },
+        {
+            "id": "Laomedonte",
+            "type": "Humano",
+            "props": {
+                "local": "Troia"
+            }
+        },
+        {
+            "id": "Priamo",
+            "type": "Humano",
+            "props": {
+                "local": "Troia"
+            }
+        },
+        {
+            "id": "P\u00e1ris",
+            "type": "Humano",
+            "props": {
+                "local": "Troia"
+            }
+        },
+        {
+            "id": "Heitor",
+            "type": "Heroi",
+            "props": {
+                "local": "Troia"
+            }
+        },
+        {
+            "id": "Cassandra",
+            "type": "Humana",
+            "props": {
+                "local": "Troia"
+            }
+        },
+        {
+            "id": "Arc\u00edsio",
+            "type": "Humano",
+            "props": {
+                "local": "\u00cdtaca"
+            }
+        },
+        {
+            "id": "Laertes",
+            "type": "Humano",
+            "props": {
+                "local": "\u00cdtaca"
+            }
+        },
+        {
+            "id": "Odisseu",
+            "type": "Heroi",
+            "props": {
+                "local": "\u00cdtaca"
+            }
+        },
+        {
+            "id": "Tel\u00eamaco",
+            "type": "Humano",
+            "props": {
+                "local": "\u00cdtaca"
+            }
+        },
+        {
+            "id": "T\u00e2ntalo",
+            "type": "Humano",
+            "props": {
+                "local": "Fr\u00edgia"
+            }
+        },
+        {
+            "id": "P\u00e9lops",
+            "type": "Humano",
+            "props": {
+                "local": "Peloponeso"
+            }
+        },
+        {
+            "id": "Atreu",
+            "type": "Heroi",
+            "props": {
+                "local": "Micenas"
+            }
+        },
+        {
+            "id": "Agamemnon",
+            "type": "Heroi",
+            "props": {
+                "local": "Micenas"
+            }
+        },
+        {
+            "id": "Menelau",
+            "type": "Heroi",
+            "props": {
+                "local": "Micenas"
+            }
+        },
+        {
+            "id": "Perseu",
+            "type": "Heroi",
+            "props": {
+                "local": "Micenas"
+            }
+        },
+        {
+            "id": "Gorg\u00f3fona",
+            "type": "Humana",
+            "props": {
+                "local": "Micenas"
+            }
+        },
+        {
+            "id": "T\u00edndaro",
+            "type": "Humano",
+            "props": {
+                "local": "Esparta"
+            }
+        },
+        {
+            "id": "Ic\u00e1rio",
+            "type": "Humano",
+            "props": {
+                "local": "Esparta"
+            }
+        },
+        {
+            "id": "Penelope",
+            "type": "Humana",
+            "props": {
+                "local": "\u00cdtaca"
+            }
+        },
+        {
+            "id": "Helena",
+            "type": "Humana",
+            "props": {
+                "local": "Esparta"
+            }
+        },
+        {
+            "id": "Clitemnestra",
+            "type": "Humana",
+            "props": {
+                "local": "Micenas"
+            }
         }
     ],
     "relations": [
@@ -169,9 +351,29 @@
             "relation": "CASADOS"
         },
         {
+            "origin": "Zeus",
+            "destiny": "Arc\u00edsio",
+            "relation": "PAI_DE"
+        },
+        {
+            "origin": "Zeus",
+            "destiny": "T\u00e2ntalo",
+            "relation": "PAI_DE"
+        },
+        {
+            "origin": "Zeus",
+            "destiny": "Perseu",
+            "relation": "PAI_DE"
+        },
+        {
             "origin": "Hera",
             "destiny": "Zeus",
             "relation": "CASADOS"
+        },
+        {
+            "origin": "Hera",
+            "destiny": "Hefesto",
+            "relation": "MAE_DE"
         },
         {
             "origin": "Ares",
@@ -179,14 +381,19 @@
             "relation": "PAI_DE"
         },
         {
-            "origin": "Semele",
-            "destiny": "Dionisio",
-            "relation": "MAE_DE"
+            "origin": "Ares",
+            "destiny": "Afrodite",
+            "relation": "AMANTES"
         },
         {
             "origin": "Semele",
             "destiny": "Zeus",
             "relation": "AMANTES"
+        },
+        {
+            "origin": "Semele",
+            "destiny": "Dionisio",
+            "relation": "MAE_DE"
         },
         {
             "origin": "Harmonia",
@@ -239,6 +446,11 @@
             "relation": "PAI_DE"
         },
         {
+            "origin": "Ilo",
+            "destiny": "Laomedonte",
+            "relation": "PAI_DE"
+        },
+        {
             "origin": "C\u00e1pis",
             "destiny": "Anquises",
             "relation": "PAI_DE"
@@ -262,6 +474,141 @@
             "origin": "Afrodite",
             "destiny": "Eneias",
             "relation": "MAE_DE"
+        },
+        {
+            "origin": "Afrodite",
+            "destiny": "Harmonia",
+            "relation": "MAE_DE"
+        },
+        {
+            "origin": "Laomedonte",
+            "destiny": "Priamo",
+            "relation": "PAI_DE"
+        },
+        {
+            "origin": "Priamo",
+            "destiny": "Heitor",
+            "relation": "PAI_DE"
+        },
+        {
+            "origin": "Priamo",
+            "destiny": "P\u00e1ris",
+            "relation": "PAI_DE"
+        },
+        {
+            "origin": "Priamo",
+            "destiny": "Cassandra",
+            "relation": "PAI_DE"
+        },
+        {
+            "origin": "P\u00e1ris",
+            "destiny": "Helena",
+            "relation": "AMANTES"
+        },
+        {
+            "origin": "Arc\u00edsio",
+            "destiny": "Laertes",
+            "relation": "PAI_DE"
+        },
+        {
+            "origin": "Laertes",
+            "destiny": "Odisseu",
+            "relation": "PAI_DE"
+        },
+        {
+            "origin": "Odisseu",
+            "destiny": "Tel\u00eamaco",
+            "relation": "PAI_DE"
+        },
+        {
+            "origin": "Odisseu",
+            "destiny": "Penelope",
+            "relation": "CASADOS"
+        },
+        {
+            "origin": "T\u00e2ntalo",
+            "destiny": "P\u00e9lops",
+            "relation": "PAI_DE"
+        },
+        {
+            "origin": "P\u00e9lops",
+            "destiny": "Atreu",
+            "relation": "PAI_DE"
+        },
+        {
+            "origin": "Atreu",
+            "destiny": "Agamemnon",
+            "relation": "PAI_DE"
+        },
+        {
+            "origin": "Atreu",
+            "destiny": "Menelau",
+            "relation": "PAI_DE"
+        },
+        {
+            "origin": "Agamemnon",
+            "destiny": "Clitemnestra",
+            "relation": "CASADOS"
+        },
+        {
+            "origin": "Menelau",
+            "destiny": "Helena",
+            "relation": "CASADOS"
+        },
+        {
+            "origin": "Perseu",
+            "destiny": "Gorg\u00f3fona",
+            "relation": "PAI_DE"
+        },
+        {
+            "origin": "Gorg\u00f3fona",
+            "destiny": "T\u00edndaro",
+            "relation": "MAE_DE"
+        },
+        {
+            "origin": "Gorg\u00f3fona",
+            "destiny": "Ic\u00e1rio",
+            "relation": "MAE_DE"
+        },
+        {
+            "origin": "T\u00edndaro",
+            "destiny": "Helena",
+            "relation": "PAI_DE"
+        },
+        {
+            "origin": "T\u00edndaro",
+            "destiny": "Clitemnestra",
+            "relation": "PAI_DE"
+        },
+        {
+            "origin": "Ic\u00e1rio",
+            "destiny": "Penelope",
+            "relation": "PAI_DE"
+        },
+        {
+            "origin": "Penelope",
+            "destiny": "Odisseu",
+            "relation": "CASADOS"
+        },
+        {
+            "origin": "Penelope",
+            "destiny": "Tel\u00eamaco",
+            "relation": "MAE_DE"
+        },
+        {
+            "origin": "Helena",
+            "destiny": "P\u00e1ris",
+            "relation": "AMANTES"
+        },
+        {
+            "origin": "Helena",
+            "destiny": "Menelau",
+            "relation": "CASADOS"
+        },
+        {
+            "origin": "Clitemnestra",
+            "destiny": "Agamemnon",
+            "relation": "CASADOS"
         }
     ]
 }

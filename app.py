@@ -31,10 +31,17 @@ menu = st.sidebar.radio("Ação", ["Adicionar Entidade", "Remover Entidade", "Ad
 if menu == "Adicionar Entidade":
     with st.sidebar.form("add_node"):
         nome = st.text_input("Nome")
-        tipo = st.selectbox("Tipo", ["Deus", "Deusa", "Heroi", "Humano", "Humana", "Monstro"])
+        tipo = st.selectbox("Tipo", ["Deus", "Deusa", "Heroi", "Humano", "Humana"])
+        local = st.text_input("Localização", placeholder="Ex: Olimpo, Tebas")
+
         btn = st.form_submit_button("Salvar")
+
         if btn and nome:
-            if grafo.add_node(nome, tipo):
+            props = {}
+            if local:
+                props["local"] = local.strip()
+
+            if grafo.add_node(nome, tipo, props):
                 grafo.save_as_json(ARQUIVO_DADOS)
                 st.success(f"{nome} adicionado!")
                 st.rerun()
@@ -138,16 +145,44 @@ def desenhar_grafo(meu_grafo_puro):
              "Monstro": "#8B0000"}
 
     # 1. Copia Nós
-    for id_no, dados in meu_grafo_puro.nodes.items():
+    for id, dados in meu_grafo_puro.nodes.items():
         cor = cores.get(dados['type'], "#999999")
 
-        G_visual.add_node(id_no, 
-                          label=id_no, 
-                          title=dados['type'], 
-                          color=cor,
-                          size=20,
-                          font={'face': 'JetBrainsMono Nerd Font', 'size': 30, 'color': 'black'}
-                          )
+        graus = meu_grafo_puro.get_degree(id)
+        neighbours = meu_grafo_puro.get_neighbours(id)
+
+        # formatar a lista dos vizinhos p texto pra botar no hover
+        neighbours_txt = []
+        for neighbour, relation in neighbours.items():
+            neighbours_txt.append(f" - {neighbour} ({relation})") 
+
+        # junta tudo numa string so
+        if neighbours_txt:
+            str_neighbours = "\n".join(neighbours_txt)
+        else:
+            str_neighbours = " - (Nenhuma conexão)"
+
+        # texto final que vai aparecer no hover
+        tooltip_text = (
+            f"=== {id.upper()} ===\n"
+            f"Tipo: {dados['type']}\n"
+            f"--------------------------\n"
+            f"[ESTATÍSTICAS]\n"
+            f"Entrada: {graus['entrada']} | Saída: {graus['saida']}\n"
+            f"Total: {graus['total']}\n"
+            f"--------------------------\n"
+            f"[CONEXÕES]\n"
+            f"{str_neighbours}"
+        ) 
+
+        G_visual.add_node(
+            id, 
+            label=id, 
+            title=tooltip_text, 
+            color=cor,
+            size=20,
+            font={'face': 'JetBrainsMono Nerd Font', 'size': 30, 'color': 'black'}
+        )
     
     # 2. Copia Arestas
     # conjunto pra guardar as arestas ja vistas
@@ -208,7 +243,33 @@ def desenhar_grafo(meu_grafo_puro):
     with open(ARQUIVO_HTML, 'r', encoding='utf-8') as f:
         st.components.v1.html(f.read(), height=650)
 
-desenhar_grafo(grafo)
+
+# ajeitar a filtragem de nos
+st.sidebar.markdown("---")
+st.sidebar.subheader("Filtrar Mapa")
+
+# essa parte ve quais locais existem nos dados
+all_places = set()
+for data in grafo.nodes.values():
+    if "local" in data.get("props", {}):
+        all_places.add(data["props"]["local"])
+
+filter_options = ["Todos"] + sorted(list(all_places))
+
+choose_place = st.sidebar.selectbox("Mostrar apenas região:", filter_options)
+
+if choose_place == "Todos":
+    st.subheader(f"Grafo completo ({len(grafo.nodes)}) entidades")
+    desenhar_grafo(grafo)
+else:
+    subgrafo = grafo.filter_by_prop("local", choose_place)
+
+    st.subheader(f"Região: {choose_place} ({len(subgrafo.nodes)}) entidades")
+
+    if len(subgrafo.nodes) == 0:
+        st.warning(f"Ninguém foi encontrado em {choose_place}")
+    else:
+        desenhar_grafo(subgrafo)
 
 with st.expander("Ver Estrutura de Dados Interna (Dict Python)"):
     st.write("Nós:", grafo.nodes)

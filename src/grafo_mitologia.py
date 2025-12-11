@@ -95,6 +95,56 @@ class GrafoMitologia:
     def get_neighbours(self, id):
         return self.adjacency.get(id, {})
     
+    
+    def get_degree(self, id):
+        if id not in self.nodes:
+            return None
+        
+        out_degree = len(self.adjacency.get(id, {}))
+
+        in_degree = 0
+        for origin, neighbours in self.adjacency.items():
+            if id in neighbours:
+                in_degree += 1
+        
+        total_degree = out_degree + in_degree
+
+        return {
+            "entrada": in_degree,
+            "saida": out_degree,
+            "total": total_degree
+        }
+    
+    def filter_by_prop(self, prop_key, value):
+        """
+        cria um subgrafo contendo apenas nos que tem uma determinada propriedade
+        ex: local = olimpo
+            somente os nos que tem essa propriedade irao para o grafo
+        """
+
+        subgraph = GrafoMitologia()
+
+        # esse loop copia os nos que atendem ao criterio
+        for id, data in self.nodes.items():
+
+            prop_value = data['props'].get(prop_key)
+
+            # se valor for igual add ao subgrafo
+            if prop_value == value:
+                subgraph.add_node(id, data['type'], data['props'])
+
+        # esse loop eh pra lidar com as arestas
+        # a ideia eh que a relacao so vai ser adicionada se ambos os nos tiverem a mesma prop
+        for origin in subgraph.nodes:
+            neighbours = self.get_neighbours(origin)
+
+            for destiny, relation in neighbours.items():
+                # se o destino nao tiver no subgrafo, entao nao tem a prop, logo nao add
+                if destiny in subgraph.nodes:
+                    subgraph.add_edge(origin, destiny, relation)
+
+        return subgraph
+    
 
     def buscar_caminho_curto(self, inicio, fim):
         """
