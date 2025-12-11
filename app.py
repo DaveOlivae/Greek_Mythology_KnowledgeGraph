@@ -141,8 +141,8 @@ def desenhar_grafo(meu_grafo_puro):
              "Deusa": "#FFD700", 
              "Heroi": "#FF69B4", 
              "Humano": "#87CEEB", 
-             "Humana": "#87CEEB",
-             "Monstro": "#8B0000"}
+             "Humana": "#87CEEB"
+             }
 
     # 1. Copia Nós
     for id, dados in meu_grafo_puro.nodes.items():
