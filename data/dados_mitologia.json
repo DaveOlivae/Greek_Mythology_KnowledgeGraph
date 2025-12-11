@@ -78,13 +78,6 @@
             }
         },
         {
-            "id": "Patrocles",
-            "type": "Heroi",
-            "props": {
-                "local": "F\u00edtia"
-            }
-        },
-        {
             "id": "Dardanos",
             "type": "Humano",
             "props": {
@@ -307,6 +300,13 @@
             "props": {
                 "local": "Micenas"
             }
+        },
+        {
+            "id": "Patrocles",
+            "type": "Heroi",
+            "props": {
+                "local": "F\u00edtia"
+            }
         }
     ],
     "relations": [
@@ -421,11 +421,6 @@
             "relation": "AMANTES"
         },
         {
-            "origin": "Patrocles",
-            "destiny": "Aquiles",
-            "relation": "AMANTES"
-        },
-        {
             "origin": "Dardanos",
             "destiny": "Erict\u00f4nio",
             "relation": "PAI_DE"
@@ -469,6 +464,11 @@
             "origin": "Assar\u00e1co",
             "destiny": "C\u00e1pis",
             "relation": "PAI_DE"
+        },
+        {
+            "origin": "Afrodite",
+            "destiny": "Ares",
+            "relation": "AMANTES"
         },
         {
             "origin": "Afrodite",
@@ -609,6 +609,11 @@
             "origin": "Clitemnestra",
             "destiny": "Agamemnon",
             "relation": "CASADOS"
+        },
+        {
+            "origin": "Patrocles",
+            "destiny": "Aquiles",
+            "relation": "AMANTES"
         }
     ]
 }

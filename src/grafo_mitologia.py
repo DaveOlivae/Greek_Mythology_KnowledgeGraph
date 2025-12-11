@@ -16,14 +16,9 @@ class GrafoMitologia:
         }
     
 
+    # funcoes para adicionar no e relacao
+
     def add_node(self, id, type, props=None):
-        """
-        Docstring for add_node
-        
-        :param id: nome do nó 
-        :param type: tipo (Deus, Humano, etc) 
-        :param props: características da entidade 
-        """
 
         if props is None:
             props = {}
@@ -41,17 +36,18 @@ class GrafoMitologia:
             # adiciona a relacao
             self.adjacency[origin][destiny] = relation
 
+            # se a relacao for bidirecional se certifica de adicionar a volta
             if relation in self.relacoes_bidirecionais:
                 self.adjacency[destiny][origin] = relation
 
             return True
         return False
 
+
+    # funcoes para remover nos e relacoes
+
+
     def remove_edge(self, origin, destiny):
-        """
-        Remove a conexão entre dois nós.
-        Se a relação for bidirecional (ex: CASADO_COM), remove a volta também.
-        """
         # verifica se a conexao existe
         if origin in self.adjacency and destiny in self.adjacency[origin]:
             
@@ -73,39 +69,46 @@ class GrafoMitologia:
         
         return False 
 
+
     def remover_no(self, id_no):
         if id_no in self.nodes:
-            # 1. Remove o nó e suas propriedades
             del self.nodes[id_no]
             
-            # 2. Remove as arestas que SAEM dele (se existirem)
             if id_no in self.adjacency:
                 del self.adjacency[id_no]
             
-            # 3. Remove as arestas que CHEGAM nele (varredura completa)
-            # Precisamos olhar todos os outros nós para ver se alguém apontava para o falecido
             for origem in self.adjacency:
                 if id_no in self.adjacency[origem]:
                     del self.adjacency[origem][id_no]
             
             return True
         return False
-
     
-    def get_neighbours(self, id):
+
+    # funcoes pra pegar os vizinhos de entrada e saida
+    
+
+    def get_neighbours_out(self, id):
         return self.adjacency.get(id, {})
+    
+    
+    def get_neighbours_in(self, id):
+        in_neighbours = {}
+        for origin, neighbours in self.adjacency.items():
+            if id in neighbours:
+                in_neighbours[f"{origin}"] = self.adjacency[origin][id]
+
+        return in_neighbours
     
     
     def get_degree(self, id):
         if id not in self.nodes:
             return None
         
-        out_degree = len(self.adjacency.get(id, {}))
+        # grau de saida (quantos vizinhos ele tem)
+        out_degree = len(self.get_neighbours_out(id))
 
-        in_degree = 0
-        for origin, neighbours in self.adjacency.items():
-            if id in neighbours:
-                in_degree += 1
+        in_degree = len(self.get_neighbours_in(id))
         
         total_degree = out_degree + in_degree
 
@@ -136,7 +139,7 @@ class GrafoMitologia:
         # esse loop eh pra lidar com as arestas
         # a ideia eh que a relacao so vai ser adicionada se ambos os nos tiverem a mesma prop
         for origin in subgraph.nodes:
-            neighbours = self.get_neighbours(origin)
+            neighbours = self.get_neighbours_out(origin)
 
             for destiny, relation in neighbours.items():
                 # se o destino nao tiver no subgrafo, entao nao tem a prop, logo nao add
@@ -170,6 +173,8 @@ class GrafoMitologia:
                     visitados.add(vizinho)
                     fila.append((vizinho, caminho + [vizinho]))
     
+
+    # funcoes basicas pra salvar os arquivos
 
     def load_from_json(self, filepath):
         try:

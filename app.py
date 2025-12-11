@@ -25,7 +25,7 @@ def get_grafo():
 grafo = get_grafo()
 
 # --- SIDEBAR: ADICIONAR ---
-st.sidebar.header("🛠️ Controles")
+st.sidebar.header("Controles")
 menu = st.sidebar.radio("Ação", ["Adicionar Entidade", "Remover Entidade", "Adicionar Relação", "Remover Relação", "Buscar Caminho"])
 
 if menu == "Adicionar Entidade":
@@ -70,8 +70,8 @@ elif menu == "Remover Relação":
     origem = st.sidebar.selectbox("Origem (Quem?)", lista_nos)
     
     # 2. Lógica para filtrar o Destino
-    # Pegamos apenas os vizinhos do nó de Origem para preencher o segundo selectbox
-    vizinhos = grafo.get_neighbours(origem) # Retorna dict: {'Hera': 'CASADO_COM', ...}
+    # pegamos apenas os vizinhos que saem do no de origem
+    vizinhos = grafo.get_neighbours_out(origem) 
     lista_vizinhos = list(vizinhos.keys())
     
     if not lista_vizinhos:
@@ -90,7 +90,7 @@ elif menu == "Remover Relação":
                 
                 # Mensagem personalizada dependendo se era casamento ou não
                 if "CASADOS" in tipo_relacao:
-                    st.sidebar.success("Divórcio concluído! 📜")
+                    st.sidebar.success("Divórcio concluído!")
                 else:
                     st.sidebar.success("Relação removida!")
                     
@@ -112,7 +112,7 @@ elif menu == "Buscar Caminho":
             st.sidebar.error("Não há conexão entre esses nós.")
 
 elif menu == "Remover Entidade":
-    st.sidebar.subheader("🗑️ Deletar Nó")
+    st.sidebar.subheader("Deletar Nó")
     
     lista_nos = list(grafo.nodes.keys())
     
@@ -149,18 +149,29 @@ def desenhar_grafo(meu_grafo_puro):
         cor = cores.get(dados['type'], "#999999")
 
         graus = meu_grafo_puro.get_degree(id)
-        neighbours = meu_grafo_puro.get_neighbours(id)
+        neighbours_out = meu_grafo_puro.get_neighbours_out(id)
+        neighbours_in = meu_grafo_puro.get_neighbours_in(id)
 
+        # config da vizinhanca = vizinhos_saida + vizinhos_entrada
         # formatar a lista dos vizinhos p texto pra botar no hover
-        neighbours_txt = []
-        for neighbour, relation in neighbours.items():
-            neighbours_txt.append(f" - {neighbour} ({relation})") 
+        neighbours_out_txt = []
+        for neighbour, relation in neighbours_out.items():
+            neighbours_out_txt.append(f" - {neighbour} ({relation})") 
 
         # junta tudo numa string so
-        if neighbours_txt:
-            str_neighbours = "\n".join(neighbours_txt)
+        if neighbours_out_txt:
+            str_neighbours_out = "\n".join(neighbours_out_txt)
         else:
-            str_neighbours = " - (Nenhuma conexão)"
+            str_neighbours_out = " - (Nenhuma conexão)"
+
+        neighbours_in_txt = []
+        for neighbour, relation in neighbours_in.items():
+            neighbours_in_txt.append(f" - {neighbour} ({relation})") 
+
+        if neighbours_in_txt:
+            str_neighbours_in = "\n".join(neighbours_in_txt)
+        else:
+            str_neighbours_in = " - (Nenhuma conexão)"
 
         # texto final que vai aparecer no hover
         tooltip_text = (
@@ -172,7 +183,10 @@ def desenhar_grafo(meu_grafo_puro):
             f"Total: {graus['total']}\n"
             f"--------------------------\n"
             f"[CONEXÕES]\n"
-            f"{str_neighbours}"
+            f"Entrada:\n"
+            f"{str_neighbours_in}\n"
+            f"Saída\n"
+            f"{str_neighbours_out}"
         ) 
 
         G_visual.add_node(
@@ -180,8 +194,7 @@ def desenhar_grafo(meu_grafo_puro):
             label=id, 
             title=tooltip_text, 
             color=cor,
-            size=20,
-            font={'face': 'JetBrainsMono Nerd Font', 'size': 30, 'color': 'black'}
+            size=25,
         )
     
     # 2. Copia Arestas
@@ -210,7 +223,7 @@ def desenhar_grafo(meu_grafo_puro):
                     origem, destino, 
                     label=relacao, 
                     arrows="to;from", 
-                    font={'face': 'JetBrainsMono Nerd Font', 'align': 'middle', 'size': 20}
+                    font={'face': 'Arial', 'align': 'middle', 'size': 30}
                 )
                 arestas_processadas.add(chave_conexao)
             else:
@@ -218,7 +231,7 @@ def desenhar_grafo(meu_grafo_puro):
                     origem, 
                     destino, 
                     label=relacao,
-                    font={'face': 'JetBrainsMono Nerd Font', 'align': 'middle', 'size': 20}
+                    font={'face': 'Arial', 'align': 'middle', 'size': 30}
                 )
 
     # 3. Gera PyVis
@@ -226,13 +239,19 @@ def desenhar_grafo(meu_grafo_puro):
     net.from_nx(G_visual)
     
     opcoes = {
+        "nodes": {
+            "font": {
+                "size": 35, 
+                "face": 'Arial'
+            }
+        },
         "edges": {
             "smooth": False,
             "color": {"color": "#444444"},
             "font": {"align": "middle", "strokeWidth": 0}},
         "physics": {
             "solver": "repulsion",
-            "repulsion": {"nodeDistance": 155, "springLength": 135}
+            "repulsion": {"nodeDistance": 250, "springLength": 250}
         }
     }
 
